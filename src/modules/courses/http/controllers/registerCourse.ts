@@ -1,7 +1,7 @@
-import { PrismaCoursesRepository } from "@/repositories/prisma/prisma-courses-repository";
-import { RegisterCourseUseCase } from "@/use-cases/registerCourse";
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
+import { RegisterCourseUseCase } from "../../use-cases/registerCourse";
+import { PrismaCoursesRepository } from "../../repositories/prisma/prisma-courses-repository";
 
 export async function registerCourse(
   request: FastifyRequest,
@@ -18,8 +18,8 @@ export async function registerCourse(
   );
 
   try {
-    const prismaCoursesRepository = new PrismaCoursesRepository();
-    const registerUseCase = new RegisterCourseUseCase(prismaCoursesRepository);
+    const coursesRepository = new PrismaCoursesRepository();
+    const registerUseCase = new RegisterCourseUseCase(coursesRepository);
 
     await registerUseCase.execute({
       title,
