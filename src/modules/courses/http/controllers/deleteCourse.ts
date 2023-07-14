@@ -10,11 +10,11 @@ export async function deleteCourse(
   const coursesRepository = new PrismaCoursesRepository();
   const deleteCourseUseCase = new DeleteCourseUseCase(coursesRepository);
 
-  const registerCourseBodyShema = z.object({
+  const deleteCourseBodyShema = z.object({
     id: z.string().uuid(),
   });
 
-  const { id } = registerCourseBodyShema.parse(request.params);
+  const { id } = deleteCourseBodyShema.parse(request.params);
 
   const deleteCourse = await deleteCourseUseCase.execute(id);
 

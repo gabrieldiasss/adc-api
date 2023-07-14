@@ -17,7 +17,7 @@ export async function updateCourse(
     request.body
   );
 
-  const { id } = request.params as string;
+  const { id } = request.params as any;
 
   try {
     const coursesRepository = new PrismaCoursesRepository();
