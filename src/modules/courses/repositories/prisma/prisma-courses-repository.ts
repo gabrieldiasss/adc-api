@@ -12,7 +12,11 @@ export class PrismaCoursesRepository implements CoursesRepository {
   }
 
   async list() {
-    const courses = await prisma.course.findMany();
+    const courses = await prisma.course.findMany({
+      include: {
+        modules: true,
+      },
+    });
 
     return courses;
   }
@@ -21,6 +25,9 @@ export class PrismaCoursesRepository implements CoursesRepository {
     const course = await prisma.course.findUnique({
       where: {
         id,
+      },
+      include: {
+        modules: true,
       },
     });
 
